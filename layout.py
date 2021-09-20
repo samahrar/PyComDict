@@ -27,12 +27,13 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.ComportLabel = QtWidgets.QLabel(self.centralwidget)
-        self.ComportLabel.setObjectName("ComportLabel")
-        self.horizontalLayout.addWidget(self.ComportLabel)
-        self.Description = QtWidgets.QLineEdit(self.centralwidget)
-        self.Description.setObjectName("Description")
-        self.horizontalLayout.addWidget(self.Description)
+        #self.ComportLabel = QtWidgets.QLabel(self.centralwidget)
+        #self.ComportLabel.setObjectName("ComportLabel")
+        #self.horizontalLayout.addWidget(self.ComportLabel)
+        #self.Description = QtWidgets.QLineEdit(self.centralwidget)
+        #self.Description.setObjectName("Description")
+        #self.horizontalLayout.addWidget(self.Description)
+        self.list_of_comports = list()
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -55,6 +56,28 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.ComportLabel.setText(_translate("MainWindow", "ComPort"))
+        #self.ComportLabel.setText(_translate("MainWindow", "ComPort"))
         self.RefreshButton.setText(_translate("MainWindow", "Refresh ComPort List"))
         self.ExitButton.setText(_translate("MainWindow", "Exit"))
+
+    def addPort(self,label):
+        label = label
+        _translate = QtCore.QCoreApplication.translate
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.ComportLabel = QtWidgets.QLabel(self.centralwidget)
+        self.ComportLabel.setObjectName(label)
+        self.horizontalLayout.addWidget(self.ComportLabel)
+        self.Description = QtWidgets.QLineEdit(self.centralwidget)
+        self.Description.setObjectName("Description"+label)
+        self.horizontalLayout.addWidget(self.Description)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.ComportLabel.setText(_translate("MainWindow", label))
+        self.list_of_comports.append(self.ComportLabel)
+        
+        
+    def removePort(self,rp):
+        for p in self.list_of_comports:
+            if p.text() in rp:
+                p.setStyleSheet("background-color: red")
+        
