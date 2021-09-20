@@ -44,7 +44,10 @@ class App(QtWidgets.QMainWindow):
         current_list = self.get_list_of_comport()
         # Add new comports to list
         for port in current_list:
-            if port not in self.list_of_comports:
+            if port in self.list_of_removed:
+                self.ui.removeStyle(port)
+                self.list_of_removed.remove(port)
+            if port not in self.list_of_comports and port not in self.list_of_removed:
                 self.list_of_comports.append(port)
                 self.ui.addPort(port)
         # Remove comports removed from list and add to new list

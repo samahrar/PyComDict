@@ -80,4 +80,8 @@ class Ui_MainWindow(object):
         for p in self.list_of_comports:
             if p.text() in rp:
                 p.setStyleSheet("background-color: red")
-        
+    
+    def removeStyle(self,rp):
+        for p in self.list_of_comports:
+            if p.text() in rp:
+                p.setStyleSheet("")
