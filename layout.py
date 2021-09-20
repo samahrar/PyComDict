@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "PyComDict"))
         #self.ComportLabel.setText(_translate("MainWindow", "ComPort"))
         self.RefreshButton.setText(_translate("MainWindow", "Refresh ComPort List"))
         self.ExitButton.setText(_translate("MainWindow", "Exit"))
