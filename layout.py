@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
         #self.Description.setObjectName("Description")
         #self.horizontalLayout.addWidget(self.Description)
         self.list_of_comports = list()
+        self.list_of_description = list()
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -74,8 +75,15 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.ComportLabel.setText(_translate("MainWindow", label))
         self.list_of_comports.append(self.ComportLabel)
+        self.list_of_description.append(self.Description)
         
-        
+    def removelineport(self,rp):
+        for p in self.list_of_comports:
+            if p.text() in rp:
+                _index = self.list_of_comports.index(p)
+                p.setVisible(False)
+                self.list_of_description[_index].setVisible(False)
+
     def removePort(self,rp):
         for p in self.list_of_comports:
             if p.text() in rp:

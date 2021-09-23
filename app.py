@@ -42,18 +42,24 @@ class App(QtWidgets.QMainWindow):
 
     def upldate_list_of_comports(self):
         current_list = self.get_list_of_comport()
-        # Add new comports to list
-        for port in current_list:
-            if port in self.list_of_removed:
-                self.ui.removeStyle(port)
-                self.list_of_removed.remove(port)
-            if port not in self.list_of_comports and port not in self.list_of_removed:
-                self.list_of_comports.append(port)
-                self.ui.addPort(port)
-        # Remove comports removed from list and add to new list
+        # Remove comports removed from list and add to removed list
         for port in self.list_of_comports:
             if port not in current_list:
                 self.list_of_comports.remove(port)
                 self.list_of_removed.append(port)
                 self.ui.removePort(port)
+                
+        # Add new comports to list
+        for port in current_list:
+            if port in self.list_of_removed:
+                self.ui.removeStyle(port)
+                self.list_of_removed.remove(port)
+                self.ui.removelineport(port)
+            if port not in self.list_of_comports :
+                self.list_of_comports.append(port)
+                self.ui.addPort(port)
+                
+        print(f"removed:{self.list_of_removed}")
+        print(f"ports:{self.list_of_comports}")
+        
         
